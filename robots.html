@@ -4,9 +4,9 @@
     <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
     <link href="robotsCss.css" rel="stylesheet" type="text/css" />
 
-
-  <script src="http://code.jquery.com/jquery-1.10.2.js"></script>
-  <script src="http://code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+<!--   // <script src="http://code.jquery.com/jquery-1.10.2.js"></script>
+  // <script src="http://code.jquery.com/ui/1.11.4/jquery-ui.js"></script> -->
   <script>
   $(function() {
     $( "#draggable" ).draggable({ snap: true });
@@ -19,11 +19,14 @@
 </head>
 <body>
 	<div class="row" style="margin: 40px 0px 40px 40px">
-		<div class="" id="left-container"> 
+		<div class="" id="code-box"> 
 			<button type="submit" class="btn btn-danger" id="runBtn" >Run</button>
 			<button type="submit" class="btn btn-info" id="moveBtn" >Move</button>
-			<button type="submit" class="btn btn-info" id="turnBtn" >Turn Right</button>
-			<div id="commands-box">
+			<button type="submit" class="btn btn-info" id="turnRghtBtn" >Move Right</button>
+			<button type="submit" class="btn btn-info" id="turnLftBtn" >Move Left</button>
+			<button type="submit" class="btn btn-info" id="moveUpBtn" >Move Up</button>
+			<button type="submit" class="btn btn-info" id="moveDownBtn" >Move Down</button>
+			<div id="commands">
 				<div id="move-command" class="draggable code ui-widget-content move" onmouseup="placeMoveCmd()">
 					Move
 				</div>
@@ -35,7 +38,7 @@
 				</div>
 				
 			</div>
-			<div id="code-box">
+			<div id="code-container">
 				<ol>
 					<li class="snapTo" id="line1"> </li>
 					<li class="snapTo" id="line2"> </li>
@@ -50,21 +53,23 @@
 				
 			</div>
 		</div>
-		<div class="" id="board">
+		<div class="nik" id="board">
 			<!-- <svg width="500" height="500" id="svg">
 			  <rect width="50" height="50" style="fill:#fff;stroke-width:1;stroke:#CCC" />
 			  <rect width="50" height="50" x="50" y="00" style="fill:#fff;stroke-width:1;stroke:#CCC" />
 			</svg> -->
 
 		</div>
+	
 	</div>
 
 </body>
 <script>
 	var moveCounter = 0;
 	var turnCounter = 0;
-
 	// Fill board with squares
+		
+
 	function placeSquares() {
 		var board = '<svg width="500" height="500" id="svg">';
 		for (var i = 0; i < 10; i++) {
@@ -83,30 +88,23 @@
 		// Generate random location for sprite 
 		var x = Math.floor((Math.random() * 5) + 1) * 50 + 10;
 		var y = Math.floor((Math.random() * 5) + 1) * 50 + 10;
+		//<div style="background:#00cdce;height:30px;width:30px;position:absolute; top:xpx;right:50%;margin-right:200px;"></div>
 		document.getElementById("svg").innerHTML += '<rect id="sprite" width="30" height="30" x="'+x+'" y="'+y+'" style="fill:#00cdce;stroke-width:1;stroke:#CCC" />';
-	}
-
-	function turnSprite() {
 
 	}
-
+	
 	function placeEndPoint() {
 		// Generate random location for end point
 		var x = Math.floor((Math.random() * 8) + 1) * 50 + 10;
 		var y = Math.floor((Math.random() * 8) + 1) * 50 + 10;
 		document.getElementById("svg").innerHTML += '<rect id="sprite" width="30" height="30" x="'+x+'" y="'+y+'" style="fill:#000;stroke-width:1;stroke:#CCC" />';
 	}
-
 	function placeMoveCmd() {
 		// var loc = document.getElementById('move-command').style.top;
 		// loc = loc.substring(0, loc.length - 2);
-
 		// var x = '<div id="move-command-' + moveCounter + '" class="draggable code ui-widget-content" onmouseup="findLoc()">' +
 		// 		  '<p>move</p>' +
 		// 		'</div>';
-
-
-
 		// switch (loc) {
 		// 	case '60':
 		// 		document.getElementById("line1").innerHTML = "move";
@@ -116,41 +114,58 @@
 		// 		console.log("nothing")
 		// }
 	}
-
 	function moveSprite() {
 		document.getElementById("sprite").x.baseVal.value += 50;
 	}
-
+	function turnSpriteLeft()
+	{
+		document.getElementById("sprite").x.baseVal.value -= 50;
+		
+	}
+	function turnSpriteRght() {
+		document.getElementById("sprite").x.baseVal.value += 50;
+	}
+	function moveUp()
+	{
+		document.getElementById("sprite").y.baseVal.value -= 50;
+	}
+	function moveDown()
+	{
+		document.getElementById("sprite").y.baseVal.value += 50;
+	}
 	function getCommands() {
 		moveSprite();
 	}
 
 	function generateMove() {
-
 		var moveDiv = '<div id="move-command-' + moveCounter + '" class="draggable code ui-widget-content ui-draggable ui-draggable-handle" onmouseup="placeMoveCmd()">' +
 						  '<p>Move</p>' +
 						'</div>';
-
 		moveCounter++;
 		document.getElementById("commands").innerHTML += moveDiv;
 	}
-
-
 	placeSquares();
 	placeSprite();
 	placeEndPoint();
-
 	$("#runBtn").click(function() {
 		getCommands();
 	});
-
 	$("#moveBtn").click(function() {
 		generateMove();
 	});
-
-	$("#turnBtn").click(function() {
-		turnSprite();
+	$("#turnRghtBtn").click(function() {
+		turnSpriteRght();
 	});
+	$("#turnLftBtn").click(function() {
+		turnSpriteLeft();
+	});
+	$("#moveUpBtn").click(function() {
+		moveUp();
+	});
+	$('#moveDownBtn').click(function() {
+		moveDown();
+	});
+
 	
 </script>
 </html>
