@@ -1,0 +1,25 @@
+.move {
+	background: #00ff00;
+	width: 50px;
+}
+.turn {
+	background: #00cc00;
+	width: 70px;
+}
+#code-area {
+	border-bottom: 1px solid #565656;
+	height: 90%;
+}
+#code-box {
+	border: 1px solid #565656;
+	height: 600px;
+	width: 400px;
+	float: left;
+}
+#board {
+	border: 1px solid #565656;
+	margin-left: 20px;
+	width: 500px;
+	height: 500px;
+	float: left;
+}
