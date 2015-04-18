@@ -9,11 +9,14 @@
     <!-- Ionicons -->
     <link href="http://code.ionicframework.com/ionicons/2.0.0/css/ionicons.min.css" rel="stylesheet" type="text/css" />
 
+	<!-- AdminLTE Theme style -->
+    <link href="dist/css/AdminLTE.min.css" rel="stylesheet" type="text/css" />
+
+    <!-- JQuery draggable styles -->
 	<link rel="stylesheet" href="https://code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
 
 	<script src="https://code.jquery.com/jquery-1.10.2.js"></script>
 	<script src="https://code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
-
 	<script>
 	 $(function() {
 	    $( "#sortable" ).sortable();
@@ -23,35 +26,52 @@
 
 </head>
 <body>
-	<div class="row" style="margin: 40px 0px 40px 40px">
-		<div class="" id="left-container"> 
-			<div id="commands-box">
-			<h4>Commands</h4>
-				<div class="cmd-box" id="right-cmd"><i class="fa fa-fw fa-arrow-circle-o-right"></i></div>
-				<div class="cmd-box" id="down-cmd"><i class="fa fa-fw fa-arrow-circle-o-down"></i></div>
-				<div class="cmd-box" id="left-cmd"><i class="fa fa-fw fa-arrow-circle-o-left"></i></div>
-				<div class="cmd-box" id="up-cmd"><i class="fa fa-fw fa-arrow-circle-o-up"></i></div>
-				<br>
-				<button type="submit" class="btn btn-danger" id="runBtn" >Run</button>
-			</div>
-			<div id="code-box">
-				<ul id="sortable">
-				</ul>
+	
+	<div style="height: 100%; background-color: #E8D1FF; width: 75%; margin: 40px 0px 40px 40px; margin: 0 auto; ">
+	<div id="spriteImg"><img src="Sprites/pinkPrincess2.jpg" alt="sprite" height="42" width="42"></div>
+
+		<div class="" style="padding: 40px 0px 40px 40px">
+			<div class="" id="left-container"> 
+				<div class="box box-solid" id="commands-box">
+					<div class="box-header with-border">
+	                  <button type="submit" class="btn btn-danger pull-right" id="runBtn" >Run</button>
+	                  <h3 class="box-title">Commands</h3>
+	                </div>
+					<div class="cmd-box" id="right-cmd"><i class="fa fa-fw fa-arrow-circle-o-right"></i></div>
+					<div class="cmd-box" id="down-cmd"><i class="fa fa-fw fa-arrow-circle-o-down"></i></div>
+					<div class="cmd-box" id="left-cmd"><i class="fa fa-fw fa-arrow-circle-o-left"></i></div>
+					<div class="cmd-box" id="up-cmd"><i class="fa fa-fw fa-arrow-circle-o-up"></i></div>
+					<div class="cmd-box" id="finish-cmd"><i class="fa fa-fw fa-smile-o"></i></div>
+					<div class="cmd-box" id="for" style="font-size: 26px; padding-top:10px">for</div>
+					<div class="cmd-box sm-box" id="end-for">end for</div>
+					<div class="cmd-box num" id="num-1">7</div>
+					<br>
+					
+					
+	                
+				</div>
+				<div class="box box-solid" id="code-box">
+					<ul id="sortable">
+					</ul>
+					
+				</div>
 				
 			</div>
-			
-		</div>
-		<div class="" id="board">
+
+			<div class="" id="board">
+
 			<!-- <svg width="500" height="500" id="svg">
 			  <rect width="50" height="50" style="fill:#fff;stroke-width:1;stroke:#CCC" />
 			  <rect width="50" height="50" x="50" y="00" style="fill:#fff;stroke-width:1;stroke:#CCC" />
 			</svg> -->
 
+			</div>
+
 		</div>
 	</div>
 
 	
-	<script src="/Users/nvoddepally/Desktop/WomenHAckathon/FindingFluffy/functions.js"></script>
+	<script src="functions.js"></script>
 </body>
 
 </html>

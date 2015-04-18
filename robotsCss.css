@@ -1,5 +1,11 @@
+body {
+	background-color: #E6CCFF;
+}
 .cmd-box {
-	margin: 3px 3px 3px 0; padding: 1px; float: left; width: 60px; height: 60px; font-size: 3em; text-align: center; background-color: #CCC;
+	margin: 3px; padding: 1px; float: left; width: 60px; height: 60px; font-size: 3em; text-align: center; border: 3px solid #565656;  background: #e6e6e6 url("https://code.jquery.com/ui/1.11.4/themes/smoothness/images/ui-bg_glass_75_e6e6e6_1x400.png") 50% 50% repeat-x;
+	border: 1px solid #d3d3d3;
+	font-weight: normal;
+	color: #555555;
 }
 .cmd-box i {
 	margin-top:6px;
@@ -7,6 +13,9 @@
 .move {
 	background: #00ff00;
 	width: 50px;
+}
+.sm-box {
+	font-size:19px;
 }
 .turn {
 	background: #00cc00;
@@ -17,18 +26,23 @@
 	height: 90%;
 }
 #code-box {
-	border: 1px solid #565656;
+	/*border: 1px solid #565656;*/
 	height: 300px;
 	width: 400px;
+	background-color: #F0E0FF;
 }
 #commands-box {
-	border: 1px solid #565656;
+	/*border: 1px solid #565656;*/
 	margin-bottom: 30px;
-	height: 170px;
+	height: 200px;
+	background-color: #F0E0FF;
+}
+#container {
+	margin: 0 auto;
 }
 #board {
-	border: 1px solid #565656;
-	margin-left: 20px;
+	/*border: 1px solid #565656;*/
+	margin-left: 40px;
 	width: 500px;
 	height: 500px;
 	float: left;
@@ -37,8 +51,17 @@
 	width: 400px;
 	float: left;
 }
+#runBtn {
+	background-color: #9900CC;
+	border: none;
+}
 #sortable { list-style-type: none; margin: 0; padding: 0; width: 450px; }
-#sortable li { margin: 3px 3px 3px 0; padding: 1px; float: left; width: 60px; height: 60px; font-size: 3em; text-align: center; }
+#sortable li { margin: 3px; padding: 1px; float: left; width: 60px; height: 60px; font-size: 3em; text-align: center; }
+#spriteImg {
+	position: relative;
+	left: 485px;
+	top: 85px;
+}
 li i {
 	margin-top:6px;
 }
