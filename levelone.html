@@ -117,24 +117,24 @@
 		//var cmds = document.getElementById("sortable").getElementsByClassName("ui-state-default")[0].getElementsByClassName("fa")[0].className;
 		var cmds = document.getElementById("sortable").getElementsByClassName("ui-state-default");
 		for (var i = 0; i < cmds.length; i++) {
-
+			var className = cmds[i].getElementsByClassName("fa")[0].className;
+			//console.log("className: "+className);
+			switch (className) {
+				case 'fa fa-fw fa-arrow-circle-o-right':
+					console.log("right");
+					break;
+				case  'fa fa-fw fa-arrow-circle-o-down':
+					console.log("down");
+					break;
+				case  'fa fa-fw fa-arrow-circle-o-left':
+					console.log("left");
+					break;
+				case  'fa fa-fw fa-arrow-circle-o-up':
+					console.log("up");
+					break;
+			}
 		}
-		getElementsByClassName("fa")[0].className;
-		console.log("className: "+className);
-		switch (className) {
-			case 'fa fa-fw fa-arrow-circle-o-right':
-				console.log("right");
-				break;
-			case  'fa fa-fw fa-arrow-circle-o-down':
-				console.log("down");
-				break;
-			case  'fa fa-fw fa-arrow-circle-o-left':
-				console.log("left");
-				break;
-			case  'fa fa-fw fa-arrow-circle-o-up':
-				console.log("up");
-				break;
-		}
+		
 	}
 
 	function generateMove() {
