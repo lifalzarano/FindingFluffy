@@ -4,51 +4,42 @@
     <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
     <link href="robotsCss.css" rel="stylesheet" type="text/css" />
 
+    <!-- Font Awesome Icons -->
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+    <!-- Ionicons -->
+    <link href="http://code.ionicframework.com/ionicons/2.0.0/css/ionicons.min.css" rel="stylesheet" type="text/css" />
 
-  <script src="http://code.jquery.com/jquery-1.10.2.js"></script>
-  <script src="http://code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+	<link rel="stylesheet" href="https://code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+
+	<script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+	<script src="https://code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
   <script>
-  $(function() {
-    $( "#draggable" ).draggable({ snap: true });
-    $( ".code" ).draggable({ snap: ".snapTo" });
-    $( "#draggable3" ).draggable({ snap: ".ui-widget-header", snapMode: "outer" });
-    $( ".grid" ).draggable({ grid: [ 20, 20 ] });
-    $( "#draggable5" ).draggable({ grid: [ 80, 80 ] });
+
+   $(function() {
+    $( "#sortable" ).sortable();
+    $( "#sortable" ).disableSelection();
   });
+
   </script>
 </head>
 <body>
 	<div class="row" style="margin: 40px 0px 40px 40px">
 		<div class="" id="left-container"> 
-			<button type="submit" class="btn btn-danger" id="runBtn" >Run</button>
-			<button type="submit" class="btn btn-info" id="moveBtn" >Move</button>
-			<button type="submit" class="btn btn-info" id="turnBtn" >Turn Right</button>
 			<div id="commands-box">
-				<div id="move-command" class="draggable code ui-widget-content move" onmouseup="placeMoveCmd()">
-					Move
-				</div>
-				<div id="move-command" class="draggable code ui-widget-content move" onmouseup="placeMoveCmd()">
-					Move
-				</div>
-				<div class="draggable code ui-widget-content turn">
-				  <p>Turn right</p>
-				</div>
-				
+			<h4>Commands</h4>
+				<div class="cmd-box" id="right-cmd"><i class="fa fa-fw fa-arrow-circle-o-right"></i></div>
+				<div class="cmd-box" id="down-cmd"><i class="fa fa-fw fa-arrow-circle-o-down"></i></div>
+				<div class="cmd-box" id="left-cmd"><i class="fa fa-fw fa-arrow-circle-o-left"></i></div>
+				<div class="cmd-box" id="up-cmd"><i class="fa fa-fw fa-arrow-circle-o-up"></i></div>
+				<br>
+				<button type="submit" class="btn btn-danger" id="runBtn" >Run</button>
 			</div>
 			<div id="code-box">
-				<ol>
-					<li class="snapTo" id="line1"> </li>
-					<li class="snapTo" id="line2"> </li>
-					<li class="snapTo" id="line3"> </li>
-					<li class="snapTo" id="line4"> </li>
-					<li class="snapTo" id="line5"> </li>
-				<ol>
-				
-				<div id="code-area">
-
-				</div>
+				<ul id="sortable">
+				</ul>
 				
 			</div>
+			
 		</div>
 		<div class="" id="board">
 			<!-- <svg width="500" height="500" id="svg">
@@ -122,7 +113,28 @@
 	}
 
 	function getCommands() {
-		moveSprite();
+		//console.log(document.getElementById("sortable").html);
+		//var cmds = document.getElementById("sortable").getElementsByClassName("ui-state-default")[0].getElementsByClassName("fa")[0].className;
+		var cmds = document.getElementById("sortable").getElementsByClassName("ui-state-default");
+		for (var i = 0; i < cmds.length; i++) {
+
+		}
+		getElementsByClassName("fa")[0].className;
+		console.log("className: "+className);
+		switch (className) {
+			case 'fa fa-fw fa-arrow-circle-o-right':
+				console.log("right");
+				break;
+			case  'fa fa-fw fa-arrow-circle-o-down':
+				console.log("down");
+				break;
+			case  'fa fa-fw fa-arrow-circle-o-left':
+				console.log("left");
+				break;
+			case  'fa fa-fw fa-arrow-circle-o-up':
+				console.log("up");
+				break;
+		}
 	}
 
 	function generateMove() {
@@ -150,6 +162,24 @@
 
 	$("#turnBtn").click(function() {
 		turnSprite();
+	});
+
+	$(".cmd-box").click(function() {
+		switch (this.id) {
+			case 'right-cmd':
+				document.getElementById("sortable").innerHTML += '<li class="ui-state-default"><i class="fa fa-fw fa-arrow-circle-o-right"></i></li>';
+				break;
+			case 'down-cmd':
+				document.getElementById("sortable").innerHTML += '<li class="ui-state-default"><i class="fa fa-fw fa-arrow-circle-o-down"></i></li>';
+				break;
+			case 'left-cmd':
+				document.getElementById("sortable").innerHTML += '<li class="ui-state-default"><i class="fa fa-fw fa-arrow-circle-o-left"></i></li>';
+				break;
+			case 'up-cmd':
+				document.getElementById("sortable").innerHTML += '<li class="ui-state-default"><i class="fa fa-fw fa-arrow-circle-o-up"></i></li>';
+				break;
+		}
+		
 	});
 	
 </script>
