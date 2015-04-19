@@ -30,6 +30,7 @@
 	
 	<div style="height: 100%; background-color: #E8D1FF; width: 75%; margin: 40px 0px 40px 40px; margin: 0 auto; ">
 	<div id="spriteImg"><img src="Sprites/pinkPrincess2.jpg" alt="sprite" height="42" width="42"></div>
+
 		<div class="" style="padding: 40px 0px 40px 40px">
 			<div class="" id="left-container"> 
 				<div class="box box-solid" id="commands-box">
@@ -39,7 +40,17 @@
 	                  <h3 class="box-title">Commands</h3>
 	                </div>
 					<div class="cmd-box" id="right-cmd"><i class="fa fa-fw fa-arrow-circle-o-right"></i></div>
+					<div class="cmd-box" id="down-cmd"><i class="fa fa-fw fa-arrow-circle-o-down"></i></div>
+					<div class="cmd-box" id="left-cmd"><i class="fa fa-fw fa-arrow-circle-o-left"></i></div>
+					<div class="cmd-box" id="up-cmd"><i class="fa fa-fw fa-arrow-circle-o-up"></i></div>
 					<div class="cmd-box" id="finish-cmd"><i class="fa fa-fw fa-smile-o"></i></div>
+					<div class="cmd-box" id="for" style="font-size: 26px; padding-top:10px">for</div>
+					<div class="cmd-box sm-box" id="end-for">end for</div>
+					<div class="cmd-box num" id="num-3">3</div>
+					<div class="cmd-box num" id="num-4">4</div>
+					<div class="cmd-box num" id="num-5">5</div>
+					<div class="cmd-box num" id="num-6">6</div>
+					<div class="cmd-box num" id="num-7">7</div>
 					<br>
 	                
 				</div>
@@ -55,8 +66,7 @@
 
 
 			</div>
-			
-			<button type="submit" onclick="window.location.href='leveltwo.html'" class="btn btn-danger pull-right disabled" id="continueBtn" >Continue to Level Two</button>
+			<button type="submit" onclick="window.location.href='levelfour.html'" class="btn btn-danger pull-right disabled" id="continueBtn" >Continue to Level Five</button>
 		</div>
 	</div>
 
@@ -85,10 +95,23 @@
 	
 	<script src="functions.js"></script>
 	<script>
-		var notice = "Oh no!! Someone has stolen the Princess's cat, Fluffy. To help her get Fluffy back, navigate through the boards to where the clues are located. Use the right arrow icon to move to the right. Use a smiley-face icon to pick up the clue."
+		var notice = "Great job, you've picked up all the clues so far! This level is a bit more difficult: there are obsticles in your way! Navigate around them and arrive at the clue.";
+		placeSprite(485, 85);
+		placeEndPoint(460, 460);
+
+		placeObstacle(60, 10);
+		placeObstacle(360, 310);
+		placeObstacle(410, 310);
+		placeObstacle(460, 310);
+
+
+		placeObstacle(260, 360);
+		placeObstacle(210, 360);
+
+		placeObstacle(410, 410);
+		placeObstacle(410, 460);
+
 		notify(notice);
-		placeSprite(485, 85)
-		placeEndPoint(110, 10);
 	</script>
 </body>
 

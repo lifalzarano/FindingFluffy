@@ -44,9 +44,6 @@
 					<div class="cmd-box" id="left-cmd"><i class="fa fa-fw fa-arrow-circle-o-left"></i></div>
 					<div class="cmd-box" id="up-cmd"><i class="fa fa-fw fa-arrow-circle-o-up"></i></div>
 					<div class="cmd-box" id="finish-cmd"><i class="fa fa-fw fa-smile-o"></i></div>
-					<div class="cmd-box" id="for" style="font-size: 26px; padding-top:10px">for</div>
-					<div class="cmd-box sm-box" id="end-for">end for</div>
-					<div class="cmd-box num" id="num-1">7</div>
 					<br>
 	                
 				</div>
@@ -62,6 +59,8 @@
 
 
 			</div>
+
+			<button type="submit" onclick="window.location.href='levelthree.html'" class="btn btn-danger pull-right disabled" id="continueBtn" >Continue to Level Three</button>
 
 		</div>
 	</div>
@@ -92,9 +91,10 @@
 	<script src="functions.js"></script>
 	<script>
 		var notice = "Good job, you found the first clue! The second one will be slightly harder to pick up: you must use right, left, down, or up arrows to navigate to the second clue.";
-		notify(notice);
 		placeSprite(485, 85);
 		placeEndPoint(0, 0);
+
+		notify(notice);
 	</script>
 </body>
 

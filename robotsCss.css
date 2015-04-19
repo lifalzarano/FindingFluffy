@@ -40,6 +40,10 @@ body {
 #container {
 	margin: 0 auto;
 }
+#continueBtn {
+	margin-right: 55px;
+	margin-top: 20px; 
+}
 #board {
 	/*border: 1px solid #565656;*/
 	margin-left: 40px;

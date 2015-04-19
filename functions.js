@@ -6,6 +6,7 @@ var spriteStartX;
 var spriteStartY;
 var done = 0;
 var currentCmd = null;
+var obstacles = new Array;
 
 // Fill board with squares
 // Fill board with squares
@@ -67,7 +68,44 @@ function placeSquares() {
 		endX = x;
 		endY = y;
 
-		document.getElementById("svg").innerHTML += '<rect id="sprite1" width="30" height="30" x="'+x+'" y="'+y+'" style="fill:#000;stroke-width:1;stroke:#CCC" />';
+		// //document.getElementById("svg").innerHTML += '<defs>'+
+		//     '<pattern id="image" patternUnits="userSpaceOnUse" width="50" height="50">' +
+		//         '<image xlink:href="clue-icon.png" width="50" height="50" />' +
+		//     '</pattern>' +
+		// '</defs>';
+		document.getElementById("svg").innerHTML += '<rect id="sprite1" width="30" height="30" x="'+x+'" y="'+y+'" style="fill=#000;stroke-width:1;stroke:#CCC" />';
+		//document.getElementById("svg").innerHTML += '<circle id="top" cx="'+x+'" cy="120" r="80" fill="url(#image)"/>';
+		
+	}
+
+	function placeObstacle(x, y) {
+		document.getElementById("svg").innerHTML += '<rect id="sprite1" width="30" height="30" x="'+x+'" y="'+y+'" fill="#FF0000" style="stroke-width:1;stroke:#CCC" />';
+		var x = [x, y];
+		console.log(x);
+		var n = obstacles.length;
+		obstacles[n] = x;
+		console.log(obstacles);
+	}
+
+	function checkIfHitObstacle() {
+		// Get sprite location
+		var move = $( "#spriteImg" ).css( "left" );
+		var spriteX = parseInt(move.substring(0, move.length - 2));
+		spriteX -= 475;
+
+		move = $( "#spriteImg" ).css( "top" );
+		var spriteY = parseInt(move.substring(0, move.length - 2));
+		spriteY -= 75;
+
+
+		for (var i = 0; i < obstacles.length; i++) {
+			if (spriteX == obstacles[i][0] && spriteY == obstacles[i][1]) {
+				console.log("Hit obstacle!!");
+				return true;
+			}
+		}
+
+		return false;
 	}
 
 
@@ -142,6 +180,7 @@ function placeSquares() {
 		$( "#spriteImg" ).css( "top", go );
 	}
 	function getCommands() {
+		var died = 0;
 		//console.log(document.getElementById("sortable").html);
 		//var cmds = document.getElementById("sortable").getElementsByClassName("ui-state-default")[0].getElementsByClassName("fa")[0].className;
 		var cmds = document.getElementById("sortable").getElementsByClassName("ui-state-default");
@@ -162,7 +201,7 @@ function placeSquares() {
 					//continue;
 				} else {
 					console.log("Error: there is not a number after 'for' key.")
-					die = 1;
+					died = 1;
 					break;
 				}
 
@@ -188,8 +227,8 @@ function placeSquares() {
 				}
 
 				if (end == 0) {
-					alert("Error: you forgot to add an 'end for' tag with your for loop!");
-					die = 1;
+					alert("Error: you forgot to add an 'end for' tag with your for loop! Press 'Rest' and try again.");
+					died = 1;
 					break;
 				}
 
@@ -204,7 +243,7 @@ function placeSquares() {
 				continue;
 			}
 
-			if (die) {
+			if (died) {
 				break;
 			}
 
@@ -226,12 +265,21 @@ function placeSquares() {
 			//console.log("className: "+className);
 
 			getCommand(className);
+
+			// Check if hit obstacle
+			if (checkIfHitObstacle()) {
+				alert("Error: You hit an obstacle!! Press 'Reset' and try again.");
+				died = 1;
+				break;
+			}
 		}
+
 
 		//checkIfDone();
 		if (done) {
-			alert("Good job, you did it!!");
-		} else {
+			alert("Good job, you did it!! Continue to the next level by clicking the button at the bottom right.");
+			$( "#continueBtn" ).removeClass( "disabled" );
+		} else if(!died) {
 			// See if on ending square
 			var move = $( "#spriteImg" ).css( "left" );
 			var spriteX = parseInt(move.substring(0, move.length - 2));
@@ -347,7 +395,19 @@ function placeSquares() {
 			case 'end-for':
 				document.getElementById("sortable").innerHTML += '<li class="ui-state-default" onmouseup="deleteCmd(this)" style="font-size: 19px">end for</li>';
 				break;
-			case 'num-1':
+			case 'num-3':
+				document.getElementById("sortable").innerHTML += '<li class="ui-state-default num" onmouseup="deleteCmd(this)">3</li>';
+				break;
+			case 'num-4':
+				document.getElementById("sortable").innerHTML += '<li class="ui-state-default num" onmouseup="deleteCmd(this)">4</li>';
+				break;
+			case 'num-5':
+				document.getElementById("sortable").innerHTML += '<li class="ui-state-default num" onmouseup="deleteCmd(this)">5</li>';
+				break;
+			case 'num-6':
+				document.getElementById("sortable").innerHTML += '<li class="ui-state-default num" onmouseup="deleteCmd(this)">6</li>';
+				break;
+			case 'num-7':
 				document.getElementById("sortable").innerHTML += '<li class="ui-state-default num" onmouseup="deleteCmd(this)">7</li>';
 				break;
 		}
