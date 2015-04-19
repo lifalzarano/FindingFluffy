@@ -51,6 +51,9 @@ body {
 	width: 400px;
 	float: left;
 }
+#resetBtn {
+	margin-right: 15px;
+}
 #runBtn {
 	background-color: #9900CC;
 	border: none;

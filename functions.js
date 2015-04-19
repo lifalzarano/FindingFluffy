@@ -1,5 +1,11 @@
 var moveCounter = 0;
 var turnCounter = 0;
+var endX;
+var endY;
+var spriteStartX;
+var spriteStartY;
+var done = 0;
+var currentCmd = null;
 
 // Fill board with squares
 // Fill board with squares
@@ -31,52 +37,109 @@ function placeSquares() {
 }
 
 	// Place sprite initially
-	// function placeSprite() {
-	// 	// Generate random location for sprite 
-	// 	var x = Math.floor((Math.random() * 5) + 1) * 50 + 10;
-	// 	var y = Math.floor((Math.random() * 5) + 1) * 50 + 10;
-	// 	document.getElementById("svg").innerHTML += '<rect id="sprite" width="30" height="30" x="'+x+'" y="'+y+'" style="fill:#00cdce;stroke-width:1;stroke:#CCC" />';
-	// }
+	function placeSprite(x, y) {
+		if (!x && !y) {
+			// Generate random location for sprite 
+			var x = Math.floor((Math.random() * 5) + 1) * 50 + 10;
+			var y = Math.floor((Math.random() * 5) + 1) * 50 + 10;
+		}
+
+		$( "#spriteImg" ).css( "left", x );
+		$( "#spriteImg" ).css( "top", y );
+
+		spriteStartX = x;
+		spriteStartY = y;
+
+		//document.getElementById("svg").innerHTML += '<rect id="sprite" width="30" height="30" x="'+x+'" y="'+y+'" style="fill:#00cdce;stroke-width:1;stroke:#CCC" />';
+	}
 
 	function turnSprite() {
 
 	}
 
-	function placeEndPoint() {
-		// Generate random location for end point
-		var x = Math.floor((Math.random() * 8) + 1) * 50 + 10;
-		var y = Math.floor((Math.random() * 8) + 1) * 50 + 10;
+	function placeEndPoint(x, y) {
+		if (!x && !y) {
+			// Generate random location for end point
+			var x = Math.floor((Math.random() * 8) + 1) * 50 + 10;
+			var y = Math.floor((Math.random() * 8) + 1) * 50 + 10;
+		}
+
+		endX = x;
+		endY = y;
+
 		document.getElementById("svg").innerHTML += '<rect id="sprite1" width="30" height="30" x="'+x+'" y="'+y+'" style="fill:#000;stroke-width:1;stroke:#CCC" />';
 	}
 
 
-	function moveSprite() {
-		document.getElementById("sprite").x.baseVal.value += 50;
+	function checkIfDone() {
+		console.log("Comparing "+endX+" "+endY);
+
+		// get sprite location
+		var move = $( "#spriteImg" ).css( "left" );
+		var spriteX = parseInt(move.substring(0, move.length - 2));
+		spriteX -= 475;
+
+		move = $( "#spriteImg" ).css( "top" );
+		var spriteY = parseInt(move.substring(0, move.length - 2));
+		spriteY -= 75;
+
+		console.log("to "+spriteX+" "+spriteY);
+
+		if (spriteX == endX && spriteY == endY) {
+			//alert("Good job, you did it!!");
+			done = 1;
+		}
+
+		if (spriteX == endX) {
+			console.log("At right x location");
+		}
+		if (spriteY == endY) {
+			console.log("At right y location");
+		}
+
 	}
 	function moveRight() {
 		console.log("move right called");
-		//document.getElementById("sprite").x.baseVal.value += 50;
 		var move = $( "#spriteImg" ).css( "left" );
-		move = move.substring(0, move.length - 2);
-		var go = parseInt(move);
+		var go = parseInt(move.substring(0, move.length - 2));
 		go += 50;
-		go += 'px';
-		console.log(go);
-		$("#spriteImg").animate({left: go});
+		$( "#spriteImg" ).css( "left", go );
+		//document.getElementById("spriteImg").x.baseVal.value += 50;
+		// var move = $( "#spriteImg" ).css( "left" );
+		// move = move.substring(0, move.length - 2);
+		// var go = parseInt(move);
+		// go += 50;
+		// go += 'px';
+		// console.log(go);
+		// $("#spriteImg").animate({left: go});
+
+		// resolve();
 	
 	}
 	function moveLeft()
 	{
-		document.getElementById("sprite").x.baseVal.value -= 50;
+		//document.getElementById("sprite").x.baseVal.value -= 50;
+		var move = $( "#spriteImg" ).css( "left" );
+		var go = parseInt(move.substring(0, move.length - 2));
+		go -= 50;
+		$( "#spriteImg" ).css( "left", go );
 		
 	}
 	function moveUp()
 	{
-		document.getElementById("sprite").y.baseVal.value -= 50;
+		//document.getElementById("sprite").y.baseVal.value -= 50;
+		var move = $( "#spriteImg" ).css( "top" );
+		var go = parseInt(move.substring(0, move.length - 2));
+		go -= 50;
+		$( "#spriteImg" ).css( "top", go );
 	}
 	function moveDown()
 	{
-		document.getElementById("sprite").y.baseVal.value += 50;
+		//document.getElementById("sprite").y.baseVal.value += 50;
+		var move = $( "#spriteImg" ).css( "top" );
+		var go = parseInt(move.substring(0, move.length - 2));
+		go += 50;
+		$( "#spriteImg" ).css( "top", go );
 	}
 	function getCommands() {
 		//console.log(document.getElementById("sortable").html);
@@ -125,7 +188,7 @@ function placeSquares() {
 				}
 
 				if (end == 0) {
-					console.log("Error: end of for loop wasn't found.");
+					alert("Error: you forgot to add an 'end for' tag with your for loop!");
 					die = 1;
 					break;
 				}
@@ -147,21 +210,44 @@ function placeSquares() {
 
 			// If this is end of for loop, throw error
 			if (cmds[i].innerHTML == 'end for') {
-				console.log('Error: end for');
+				alert('Error: Can\'t use an "end for" command without a "for" command!');
 				break;
 			}
 
 			// If a number is by itself in middle of code, throw error
 			if(cmds[i].className == "ui-state-default num") {
 				var num = cmds[i].innerHTML;
-				console.log("Error! Can't have number by itself");
+				alert("Error! Can't have number by itself");
 				break;
 			}
 
 			// Get commands defined by an icon
 			var className = cmds[i].getElementsByClassName("fa")[0].className;
 			//console.log("className: "+className);
+
 			getCommand(className);
+		}
+
+		//checkIfDone();
+		if (done) {
+			alert("Good job, you did it!!");
+		} else {
+			// See if on ending square
+			var move = $( "#spriteImg" ).css( "left" );
+			var spriteX = parseInt(move.substring(0, move.length - 2));
+			spriteX -= 475;
+
+			move = $( "#spriteImg" ).css( "top" );
+			var spriteY = parseInt(move.substring(0, move.length - 2));
+			spriteY -= 75;
+
+			console.log("to "+spriteX+" "+spriteY);
+
+			if (spriteX == endX && spriteY == endY) {
+				alert("You made it to the square with the clue, but you forgot to use a smiley icon to pick up the clue! Press 'Reset' and try again.");
+			} else {
+				alert("Whoops, you didn't end up on the square with the clue. Press 'Reset' and try again!");
+			}
 		}
 		
 	}
@@ -174,9 +260,6 @@ function placeSquares() {
 				break;
 			case  'fa fa-fw fa-arrow-circle-o-down':
 				console.log("down");
-				var promise = new Promise(function(resolve, reject) {
-
-				});
 				moveDown();
 				break;
 			case  'fa fa-fw fa-arrow-circle-o-left':
@@ -189,6 +272,7 @@ function placeSquares() {
 				break;
 			case 'fa fa-fw fa-smile-o':
 				console.log("finish");
+				checkIfDone();
 				break;
 		}
 	}
@@ -214,10 +298,14 @@ function placeSquares() {
 		}
 	}
 
+	function notify(notice) {
+		alert(notice);
+	}
+
 
 	placeSquares();
 	//placeSprite();
-	placeEndPoint();
+	// placeEndPoint();
 
 	// $("runBtn").click(function(){
 	//     $("#spriteImg").animate({left: '250px'});
@@ -228,8 +316,9 @@ function placeSquares() {
 		getCommands();
 	});
 
-	$("#moveBtn").click(function() {
-		generateMove();
+	$("#resetBtn").click(function() {
+		$( "#spriteImg" ).css( "left", spriteStartX );
+		$( "#spriteImg" ).css( "top", spriteStartY );
 	});
 
 	$("#turnBtn").click(function() {
