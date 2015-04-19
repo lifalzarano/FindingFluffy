@@ -1,0 +1,100 @@
+<html>
+<head>
+	<title> Finding Fluffy</title>
+	 <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+   <link rel="stylesheet" href="homeCss.css">
+   <link href='http://fonts.googleapis.com/css?family=Bree+Serif' rel='stylesheet' type='text/css'>
+   <link href='http://fonts.googleapis.com/css?family=Lobster' rel='stylesheet' type='text/css'>
+   <link href='http://fonts.googleapis.com/css?family=Sigmar+One' rel='stylesheet' type='text/css'>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+</head>
+<body >
+<center>
+<div class="container">
+	<h1 style="margin-bottom:20px">FINDING FLUFFY</h1>
+
+	<div class="row" >
+	
+		<div class="col-sm-4">
+		
+			<div class="row-sm-10"  > 
+
+				  <div class="box" id="box">
+                  <div class="box-header with-border">
+                    <h3 class="box-title">Selected Picture</h3>
+                     <div id="imageHolder" style="margin-bottom: 20px">
+                     <img src="Sprites/pinkPrincess.jpg" id="princess" class="img-thumbnail" alt="Cinque Terre" width="304" height="236">
+                 	</div>
+                    </div><!-- /.box-tools -->
+                  </div><!-- /.box-header -->
+                  <div class="box-body">
+                 
+			</div>
+
+			<div class"row-sm-2">
+
+			<button type="submit" class="btn btn-success" id="Playbtn" onclick="window.location = 'levelone.html';">PLAY !</button>	
+			</div>
+		</div>
+	</div>
+  		<div class="col-sm-8" id="picturesBox">
+         <h4>Pictures</h4>
+  			<div class="row">
+  				<div class="col-sm-4"><img src="Sprites/pinkPrincess.jpg" id="princess1" name="princess" class="img-responsive" alt="princess1" width="100%" height="120%"></div>
+  					<div class="col-sm-4"><img src="Sprites/bluePrincess.png" id="princessblue" class="img-responsive" alt="Blue princess" width="75%" height="75%"></div>
+  						<div class="col-sm-4"><img src="Sprites/dinoGreen.png" id="dinoGreen" class="img-responsive" alt="Dino Green" width="75%" height="75%"></div>
+  			</div>
+  			<div class="row">
+  				<div class="col-sm-4"><img src="Sprites/pinkPrincess2.jpg" id="princesspink" class="img-responsive" alt="Pink princess" width="75%" height="75%"></div>
+  				<div class="col-sm-4"><img src="Sprites/grayTricerotops.jpg" id="graytricerotops" class="img-responsive" alt="tricerotops" width="75%" height=" 75%"></div>
+  				<div class="col-sm-4"><img src="Sprites/knights.jpg" id="knights" class="img-responsive" alt="knights" width="75%" height="75%"></div>
+  			
+  			</div>
+  			<div class="row">
+  				<div class="col-sm-4"><img src="Sprites/submarine.jpg" id="submarine" class="img-responsive" alt="submarine" width="75%" height="75%"></div>
+  					<div class="col-sm-4"><img src="Sprites/t-rex.png" id="t-rex" class="img-responsive" alt="t-rex" width="75%" height="75%"></div>
+  						<div class="col-sm-4"><img src="Sprites/tricerotops.png" id="tricerotops" class="img-responsive" alt="tricerotops" width="75%" height="75%"></div>
+  			</div>
+  		</div>
+  		
+
+   
+	</div>
+
+	<script>
+	$( "#princess1" ).click(function() {
+  			document.getElementById("imageHolder").innerHTML ='<img src="Sprites/pinkPrincess.jpg" id="princess1" name="princess" class="img-thumbnail" alt="Cinque Terre" width="304" height="236">';
+      });
+$( "#princessblue" ).click(function() {
+        document.getElementById("imageHolder").innerHTML ='<img src="Sprites/bluePrincess.png" id="princessblue" class="img-thumbnail" alt="Blue princess" width="304" height="236">';
+        });
+        $( "#dinoGreen" ).click(function() {
+        document.getElementById("imageHolder").innerHTML ='<img src="Sprites/dinoGreen.png" id="dinoGreen" class="img-thumbnail" alt="Dino Green" width="304" height="236">';
+        });
+        $( "#princesspink" ).click(function() {
+        document.getElementById("imageHolder").innerHTML ='<img src="Sprites/pinkPrincess2.jpg" id="princesspink" class="img-thumbnail" alt="Pink princess" width="304" height="236">';
+        });
+        $( "#graytricerotops" ).click(function() {
+        document.getElementById("imageHolder").innerHTML ='<img src="Sprites/grayTricerotops.jpg" id="graytricerotops" class="img-thumbnail" alt="graytricerotops" width="304" height="236">';
+        });
+        $( "#knights" ).click(function() {
+        document.getElementById("imageHolder").innerHTML ='<img src="Sprites/knights.jpg" id="knights" class="img-thumbnail" alt="knights" width="304" height="236">';
+        });
+        $( "#submarine" ).click(function() {
+        document.getElementById("imageHolder").innerHTML ='<img src="Sprites/submarine.jpg" id="submarine" class="img-thumbnail" alt="submarine" width="304" height="236">';
+        });
+        $( "#t-rex" ).click(function() {
+        document.getElementById("imageHolder").innerHTML ='<img src="Sprites/t-rex.png" id="t-rex" class="img-thumbnail" alt="t-rex" width="304" height="236">';
+        });
+       
+         $( "#tricerotops" ).click(function() {
+        document.getElementById("imageHolder").innerHTML ='<img src="Sprites/tricerotops.png" id="tricerotops" class="img-thumbnail" alt="tricerotops" width="304" height="236">';
+        });
+       
+
+	</script>
+</center>
+
+</body>
+</html>
