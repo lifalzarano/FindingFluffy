@@ -22,7 +22,7 @@
 
 				  <div class="box" id="box">
                   <div class="box-header with-border">
-                    <h3 class="box-title">Selected Picture</h3>
+                    <h2 class="box-title">Select A Picture</h2>
                      <div id="imageHolder" style="margin-bottom: 20px">
                      <img src="Sprites/pinkPrincess.jpg" id="princess" class="img-thumbnail" alt="Cinque Terre" width="304" height="236">
                  	</div>
@@ -34,12 +34,12 @@
 
 			<div class"row-sm-2">
 
-			<button type="submit" class="btn btn-success" id="Playbtn" onclick="window.location = 'levelone.html';">PLAY !</button>	
+			<button type="submit" class="btn btn-primary" id="Playbtn" onclick="play()">Play!</button>	
 			</div>
 		</div>
 	</div>
   		<div class="col-sm-8" id="picturesBox">
-         <h4>Pictures</h4>
+         
   			<div class="row">
   				<div class="col-sm-4"><img src="Sprites/pinkPrincess.jpg" id="princess1" name="princess" class="img-responsive" alt="princess1" width="100%" height="120%"></div>
   					<div class="col-sm-4"><img src="Sprites/bluePrincess.png" id="princessblue" class="img-responsive" alt="Blue princess" width="75%" height="75%"></div>
@@ -66,7 +66,7 @@
 	$( "#princess1" ).click(function() {
   			document.getElementById("imageHolder").innerHTML ='<img src="Sprites/pinkPrincess.jpg" id="princess1" name="princess" class="img-thumbnail" alt="Cinque Terre" width="304" height="236">';
       });
-$( "#princessblue" ).click(function() {
+      $( "#princessblue" ).click(function() {
         document.getElementById("imageHolder").innerHTML ='<img src="Sprites/bluePrincess.png" id="princessblue" class="img-thumbnail" alt="Blue princess" width="304" height="236">';
         });
         $( "#dinoGreen" ).click(function() {
@@ -91,7 +91,11 @@ $( "#princessblue" ).click(function() {
          $( "#tricerotops" ).click(function() {
         document.getElementById("imageHolder").innerHTML ='<img src="Sprites/tricerotops.png" id="tricerotops" class="img-thumbnail" alt="tricerotops" width="304" height="236">';
         });
-       
+       function play()
+       {
+        window.location = 'levelone.html';
+        // document.cookie=document.getElementByIt("imageHolder");
+       }
 
 	</script>
 </center>
